@@ -1,0 +1,44 @@
+import 'package:pepper_cloud_test/core/error/failure.dart';
+import 'package:pepper_cloud_test/core/resources/either.dart';
+import 'package:pepper_cloud_test/features/todo/data/datasources/local/todo_local_data_source.dart';
+import 'package:pepper_cloud_test/features/todo/data/models/todo_model.dart';
+import 'package:pepper_cloud_test/features/todo/domain/entities/todo.dart';
+import 'package:pepper_cloud_test/features/todo/domain/repositories/todo_repository.dart';
+
+class TodoRepositoryImpl implements TodoRepository {
+  final TodoLocalDataSource dataSource;
+
+  TodoRepositoryImpl({required this.dataSource});
+  @override
+  Future<Either<Failure, void>> deleteTodo({required String id}) async {
+    try {
+      await dataSource.deleteTodo(id);
+      return const Right(null);
+    } catch (e) {
+      return const Left(ClientFailure(message: "Unable to delete.."));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Stream<List<Todo>>>> getTodos() async {
+    try {
+      return Right(dataSource.getTodos());
+    } catch (e) {
+      return const Left(ClientFailure(message: "Unable to get todos.."));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> saveTodo({required Todo todo}) async {
+    try {
+      await dataSource.saveTodo(TodoModel(
+          title: todo.title,
+          description: todo.description,
+          id: todo.id,
+          isCompleted: todo.isCompleted));
+      return const Right(null);
+    } catch (e) {
+      return const Left(ClientFailure(message: "Unable to save.."));
+    }
+  }
+}
