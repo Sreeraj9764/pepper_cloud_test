@@ -15,24 +15,24 @@ Future<void> _initPref() async {
 
 void _initTodo() {
   //Datasoure
-  sl.registerFactory<TodoLocalDataSource>(
+  sl.registerLazySingleton<TodoLocalDataSource>(
     () => TodoLocalDataSourceImpl(prefs: sl()),
   );
   //Repository
-  sl.registerFactory<TodoRepository>(
+  sl.registerLazySingleton<TodoRepository>(
     () => TodoRepositoryImpl(
       dataSource: sl(),
     ),
   );
   //Usecases
   sl
-    ..registerFactory(() => DeleteTodo(todoRepository: sl()))
-    ..registerFactory(() => GetTodos(todoRepository: sl()))
-    ..registerFactory(() => SaveTodo(todoRepository: sl()));
+    ..registerLazySingleton(() => DeleteTodo(todoRepository: sl()))
+    ..registerLazySingleton(() => GetTodos(todoRepository: sl()))
+    ..registerLazySingleton(() => SaveTodo(todoRepository: sl()));
 
   //Bloc
   sl
-    ..registerLazySingleton(
+    ..registerFactory(
         () => TodosViewBloc(deleteTodo: sl(), getTodos: sl(), saveTodo: sl()))
     ..registerFactory(() => EditTodoBloc(saveTodo: sl()));
 }

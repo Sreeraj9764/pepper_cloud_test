@@ -32,16 +32,8 @@ class TodosViewBloc extends Bloc<TodosViewEvent, TodosViewState> {
     Emitter<TodosViewState> emit,
   ) async {
     emit(state.copyWith(status: TodosViewStatus.loading));
-    final res = await _getTodos(NoParams());
-    late final Stream<List<Todo>> stream;
-    res.fold(
-        (l) => state.copyWith(
-              status: TodosViewStatus.failure,
-            ), (r) {
-      stream = r;
-    });
     await emit.forEach<List<Todo>>(
-      stream,
+      _getTodos.call(NoParams()),
       onData: (todos) => state.copyWith(
         status: TodosViewStatus.success,
         todos: todos,

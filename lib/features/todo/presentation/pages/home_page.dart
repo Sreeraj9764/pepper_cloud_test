@@ -96,6 +96,7 @@ class TodosViewView extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.add),
           onPressed: () => Navigator.of(context).push(EditTodoPage.route())),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pepper_cloud_test/core/theme/app_theme.dart';
 import 'features/todo/presentation/pages/pages.dart';
 
 class App extends StatelessWidget {
@@ -7,12 +8,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        ),
-        useMaterial3: true,
-      ),
+      theme: AppTheme().appTheme,
       debugShowCheckedModeBanner: false,
       home: const HomePage(),
     );

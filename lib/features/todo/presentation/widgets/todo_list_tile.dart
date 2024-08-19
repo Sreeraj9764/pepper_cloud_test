@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pepper_cloud_test/core/extentions/context_extentions.dart';
 
 class TodoListTile extends StatelessWidget {
   const TodoListTile({
@@ -45,10 +46,10 @@ class TodoListTile extends StatelessWidget {
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: !isCompleted
-              ? null
-              : TextStyle(
-                  color: captionColor,
+              ? context.textTheme.titleLarge
+              : context.textTheme.titleLarge?.copyWith(
                   decoration: TextDecoration.lineThrough,
+                  
                 ),
         ),
         subtitle: Text(

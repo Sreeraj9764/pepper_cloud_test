@@ -1,5 +1,4 @@
-import 'package:pepper_cloud_test/core/error/failure.dart';
-import 'package:pepper_cloud_test/core/resources/either.dart';
+import 'package:pepper_cloud_test/core/app_core.dart';
 import 'package:pepper_cloud_test/features/todo/data/datasources/local/todo_local_data_source.dart';
 import 'package:pepper_cloud_test/features/todo/data/models/todo_model.dart';
 import 'package:pepper_cloud_test/features/todo/domain/entities/todo.dart';
@@ -20,11 +19,11 @@ class TodoRepositoryImpl implements TodoRepository {
   }
 
   @override
-  Future<Either<Failure, Stream<List<Todo>>>> getTodos() async {
+  Stream<List<Todo>> getTodos() {
     try {
-      return Right(dataSource.getTodos());
+      return dataSource.getTodos();
     } catch (e) {
-      return const Left(ClientFailure(message: "Unable to get todos.."));
+      throw const ClientException(message: "Cant't get todos..");
     }
   }
 

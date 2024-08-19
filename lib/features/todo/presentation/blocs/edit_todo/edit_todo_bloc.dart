@@ -48,7 +48,13 @@ class EditTodoBloc extends Bloc<EditTodoEvent, EditTodoState> {
       res = await _saveTodo(
           Todo(title: state.title, description: state.description));
     } else {
-      res = await _saveTodo(state.initialTodo!);
+      final String updatedTitle =
+          state.title.isEmpty ? state.initialTodo!.title : state.title;
+      final String updatedDescription = state.description.isEmpty
+          ? state.initialTodo!.description
+          : state.description;
+      res = await _saveTodo(state.initialTodo!
+          .copyWith(title: updatedTitle, description: updatedDescription));
     }
     res.fold(
       (l) => emit(state.copyWith(
