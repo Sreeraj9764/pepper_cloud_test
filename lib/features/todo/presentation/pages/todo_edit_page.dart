@@ -42,7 +42,7 @@ class EditTodoPage extends StatelessWidget {
         },
         child: const Icon(Icons.check_rounded),
       ),
-      body: Padding(
+      body: const Padding(
         padding: EdgeInsets.all(16),
         child: Column(
           mainAxisSize: MainAxisSize.min,
