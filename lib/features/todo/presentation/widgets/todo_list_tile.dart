@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:pepper_cloud_test/core/extentions/context_extentions.dart';
 
 class TodoListTile extends StatelessWidget {
@@ -11,6 +12,7 @@ class TodoListTile extends StatelessWidget {
     required this.title,
     this.description,
     required this.isCompleted,
+    required this.dateTime,
   });
 
   final String id;
@@ -19,6 +21,7 @@ class TodoListTile extends StatelessWidget {
   final bool isCompleted;
   final ValueChanged<bool>? onToggleCompleted;
   final DismissDirectionCallback? onDismissed;
+  final DateTime? dateTime;
   final VoidCallback? onTap;
 
   @override
@@ -48,12 +51,19 @@ class TodoListTile extends StatelessWidget {
               ? context.textTheme.titleLarge
               : context.textTheme.titleLarge?.copyWith(
                   decoration: TextDecoration.lineThrough,
-                  
                 ),
         ),
-        subtitle: Text(
-          description ?? "",
-          maxLines: 1,
+        subtitle: RichText(
+          text: TextSpan(children: [
+            TextSpan(
+                text: description ?? "", style: context.textTheme.bodyMedium),
+            TextSpan(
+                text: dateTime != null
+                    ? "- ${DateFormat('yyyy-MM-dd – kk:mm').format(dateTime!)}"
+                    : "",
+                style: context.textTheme.labelMedium)
+          ]),
+          maxLines: 2,
           overflow: TextOverflow.ellipsis,
         ),
         leading: Checkbox(
@@ -65,6 +75,7 @@ class TodoListTile extends StatelessWidget {
               ? null
               : (value) => onToggleCompleted!(value!),
         ),
+        isThreeLine: true,
         trailing: onTap == null ? null : const Icon(Icons.chevron_right),
       ),
     );

@@ -71,6 +71,7 @@ class TodosViewView extends StatelessWidget {
                       isCompleted: todo.isCompleted,
                       title: todo.title,
                       description: todo.description,
+                      dateTime: todo.dateTime,
                       onToggleCompleted: (isCompleted) {
                         context.read<TodosViewBloc>().add(
                               TodosViewTodoCompletionToggled(
