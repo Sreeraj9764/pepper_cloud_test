@@ -8,12 +8,14 @@ class Todo extends Equatable {
     this.id,
     this.description = '',
     this.isCompleted = false,
+    this.dateTime, 
   });
 
   final String? id;
   final String title;
   final String description;
   final bool isCompleted;
+  final DateTime? dateTime;
 
   Todo copyWith({
     String? id,
@@ -30,5 +32,10 @@ class Todo extends Equatable {
   }
 
   @override
-  List<Object> get props => [id ?? '', title, description, isCompleted];
+  List<Object> get props => [
+        id ?? '',
+        title,
+        description,
+        isCompleted,
+      ];
 }

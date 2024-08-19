@@ -9,8 +9,13 @@ part 'todo_model.g.dart';
 @JsonSerializable()
 class TodoModel extends Todo {
   TodoModel(
-      {String? id, required super.title, super.description, super.isCompleted})
-      : super(id: id ?? const Uuid().v4());
+      {
+    String? id,
+    DateTime? dateTime,
+    required super.title,
+    super.description,
+    super.isCompleted,
+  }) : super(id: id ?? const Uuid().v4(), dateTime: dateTime);
 
   @override
   TodoModel copyWith({

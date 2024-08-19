@@ -34,7 +34,8 @@ class TodoRepositoryImpl implements TodoRepository {
           title: todo.title,
           description: todo.description,
           id: todo.id,
-          isCompleted: todo.isCompleted));
+          isCompleted: todo.isCompleted,
+          dateTime: DateTime.now()));
       return const Right(null);
     } catch (e) {
       return const Left(ClientFailure(message: "Unable to save.."));

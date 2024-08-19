@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pepper_cloud_test/core/di/di_container.dart';
+import 'package:pepper_cloud_test/core/extentions/context_extentions.dart';
 import 'package:pepper_cloud_test/features/todo/presentation/blocs/todo_view/todo_view_bloc.dart';
 import 'package:pepper_cloud_test/features/todo/presentation/pages/todo_edit_page.dart';
 import 'package:pepper_cloud_test/features/todo/presentation/widgets/todo_list_tile.dart';
@@ -55,7 +56,7 @@ class TodosViewView extends StatelessWidget {
                 return Center(
                   child: Text(
                     "Todo list is empty",
-                    style: Theme.of(context).textTheme.bodySmall,
+                    style: context.textTheme.displayMedium,
                   ),
                 );
               }
