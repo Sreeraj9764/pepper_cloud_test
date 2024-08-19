@@ -105,8 +105,8 @@ class AppTheme {
 
   ElevatedButtonThemeData get elevatedButonTheme => ElevatedButtonThemeData(
           style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color>(colorScheme.primary),
-        shape: MaterialStateProperty.all<OutlinedBorder>(
+        backgroundColor: WidgetStateProperty.all<Color>(colorScheme.primary),
+        shape: WidgetStateProperty.all<OutlinedBorder>(
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
       ));
 }
@@ -114,10 +114,8 @@ class AppTheme {
 const colorScheme = ColorScheme(
   brightness: Brightness.light,
   primary: Color(0xFF4A67CC),
-  background: Colors.white,
   secondary: Color(0xFF4C675D),
   surface: Colors.white,
-  onBackground: Colors.black,
   onError: Colors.white,
   onPrimary: Colors.white,
   onSecondary: Colors.white,

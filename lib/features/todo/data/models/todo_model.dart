@@ -12,6 +12,7 @@ class TodoModel extends Todo {
       {String? id, required super.title, super.description, super.isCompleted})
       : super(id: id ?? const Uuid().v4());
 
+  @override
   TodoModel copyWith({
     String? id,
     String? title,
